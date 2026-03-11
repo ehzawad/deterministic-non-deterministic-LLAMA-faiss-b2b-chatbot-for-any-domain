@@ -1,0 +1,9 @@
+.DS_Store
+.venv/
+models/
+__pycache__/
+*.pyc
+faq/faq_index.faiss
+faq/faq_metadata.json
+faq/knowledge_base.json
+.env
