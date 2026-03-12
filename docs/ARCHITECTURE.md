@@ -269,18 +269,3 @@ Phone-based verification with 3-attempt lockout:
 3. On success: seal session store, write facts, transition to VERIFIED
 4. On failure: increment attempts, if 3x -> LOCKED -> HUMAN_TRANSFER
 5. Locked state is terminal (requires human intervention)
-
-## Differences from Original PDF Specification
-
-| Aspect | Original Spec (PDFs) | Actual Implementation |
-|--------|---------------------|----------------------|
-| LLM | Single Llama 8B + LoRA | Dual-model: Qwen3-4B (agent) + Llama 3.1 8B (generator) |
-| Agent interface | Text completion | Chat completion (system + user messages) |
-| Context window | Fixed ~2500 tokens | Dynamic, GPU-aware (2K-131K depending on VRAM) |
-| Turn history | 6-8 turns | 16 turns (configurable) |
-| Embedding model | Not specified | E5-multilingual-large-instruct (1024-dim) |
-| Embedding device | Not specified | CPU (GPU reserved for LLMs) |
-| PURE_FAQ handling | Pass 2 wraps naturally | Skip Pass 2 entirely (return answer directly) |
-| Filler messages | Streamed async | Returned synchronously (async would require threading) |
-| Tool chaining | Automatic chain detection | Manual via Pass 1 producing multiple tool_calls |
-| State count | ~26 states (D8) | 24 states (WORKFLOW_ACTIVE consolidated) |
