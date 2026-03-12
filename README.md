@@ -238,20 +238,3 @@ The system is domain-agnostic. To adapt for a different business:
 5. Rebuild the FAISS index: `python build_faq_index.py`
 
 The core pipeline (dual-model routing, memory system, guardrails, state machine) remains unchanged.
-
-## Architecture Specification
-
-The 10 PDF documents in `docs/architecture/` define the complete system design:
-
-| Doc | Title | Covers |
-|-----|-------|--------|
-| D1 | NLP Engine Overview | Top-level data flow: Auth Gate, LLM backbone, Action Layer, Response Assembly, Memory Layer, Context Builder |
-| D2 | The Main Loop - One Turn | Single conversation turn lifecycle from raw utterance to final response |
-| D3 | LLM Decision Space | Action type routing: faq, tool, workflow, talk, escalate |
-| D4 | Memory System - 5 Stores | Session, facts, threads, emotion, turn history |
-| D5 | Context Window Assembly | 7-layer prompt construction from memory stores |
-| D6 | FAQ Engine - Three Response Modes | Pure FAQ, blended, and pure LLM response strategies |
-| D7 | Tool Executor + Workflow Engine | API execution, tool chaining, multi-step workflows |
-| D8 | Dialogue State Machine | 26-state FSM with full transition table |
-| D9 | Guardrails - 5 Safety Layers | Hallucination blocking, fact integrity, hedge enforcement, emotion escalation |
-| D10 | Real Conversation | End-to-end sequence diagram showing all systems in a banking scenario |
